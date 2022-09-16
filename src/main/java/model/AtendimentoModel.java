@@ -16,7 +16,7 @@ public class AtendimentoModel {
     private String nome;
     private Date data;
     private Date atendimento;
-    private int status; //0 = não atendido, 1 = em atendimento, 2 = já atendido 
+    private int status; //0 = não atendido, 1 = senha em atendimento, 2 = já atendidos
 
     public AtendimentoModel(int id, String nome, Date data, Date atendimento, int status) {
         this.id = id;
@@ -72,7 +72,7 @@ public class AtendimentoModel {
 
     @Override
     public String toString() {
-        return "AtendimentoModel{" + "id=" + id + ", nome=" + nome + ", data=" + data + ", atendimento=" + atendimento + ", status=" + status + '}';
+        return id + " - " + nome;
     }
     
 }

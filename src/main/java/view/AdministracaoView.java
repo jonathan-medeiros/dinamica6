@@ -7,8 +7,6 @@ package view;
 import controller.AtendimentoController;
 import java.sql.SQLException;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.AtendimentoModel;
 
@@ -39,21 +37,22 @@ public class AdministracaoView extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTextFieldCadastro = new javax.swing.JTextField();
-        jButtonCadastrar = new javax.swing.JButton();
+        jButtonCadastro = new javax.swing.JButton();
         jLabelSenhaCadastrada = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jButtonProximo = new javax.swing.JButton();
         jLabelSenhaChamada = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(727, 220));
 
-        jPanel1.setBackground(new java.awt.Color(51, 102, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/jonathandamasiomedeiros/NetBeansProjects/Discord2/discord/src/main/resource/SIMBOLO-02.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/jonathandamasiomedeiros/NetBeansProjects/Discord/src/main/resource/SIMBOLO-02.png")); // NOI18N
         jLabel1.setText("Painel de Administração");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -67,70 +66,72 @@ public class AdministracaoView extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 13)); // NOI18N
-        jLabel2.setText("Informar o nome e clicar em Cadastrar");
+        jLabel2.setText("Informar o nome e clicar em Cadastrar:");
 
-        jTextFieldCadastro.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-
-        jButtonCadastrar.setBackground(new java.awt.Color(153, 204, 255));
-        jButtonCadastrar.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jButtonCadastrar.setText("Clique aqui para Cadastrar");
-        jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldCadastro.setFont(new java.awt.Font("Verdana", 0, 13)); // NOI18N
+        jTextFieldCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCadastrarActionPerformed(evt);
+                jTextFieldCadastroActionPerformed(evt);
             }
         });
 
-        jLabelSenhaCadastrada.setFont(new java.awt.Font("Verdana", 1, 13)); // NOI18N
+        jButtonCadastro.setBackground(new java.awt.Color(0, 102, 204));
+        jButtonCadastro.setFont(new java.awt.Font("Verdana", 1, 13)); // NOI18N
+        jButtonCadastro.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCadastro.setText("Clique aqui para Cadastrar");
+        jButtonCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadastroActionPerformed(evt);
+            }
+        });
+
+        jLabelSenhaCadastrada.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
+        jLabelSenhaCadastrada.setForeground(new java.awt.Color(0, 204, 102));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldCadastro))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabelSenhaCadastrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                    .addComponent(jTextFieldCadastro)
+                    .addComponent(jButtonCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelSenhaCadastrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonCadastro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelSenhaCadastrada)
-                .addGap(0, 109, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel3.setText("Chamar próximo cliente");
+        jLabel4.setFont(new java.awt.Font("Verdana", 1, 13)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel4.setText("Chamar próximo cliente:");
 
-        jButtonProximo.setBackground(new java.awt.Color(153, 204, 255));
-        jButtonProximo.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jButtonProximo.setBackground(new java.awt.Color(0, 102, 204));
+        jButtonProximo.setFont(new java.awt.Font("Verdana", 1, 13)); // NOI18N
+        jButtonProximo.setForeground(new java.awt.Color(255, 255, 255));
         jButtonProximo.setText("Clique para Próxima Senha");
         jButtonProximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +139,8 @@ public class AdministracaoView extends javax.swing.JFrame {
             }
         });
 
-        jLabelSenhaChamada.setFont(new java.awt.Font("Verdana", 0, 13)); // NOI18N
+        jLabelSenhaChamada.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
+        jLabelSenhaChamada.setForeground(new java.awt.Color(0, 204, 102));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -147,18 +149,18 @@ public class AdministracaoView extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonProximo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelSenhaChamada, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE))
+                    .addComponent(jLabelSenhaChamada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonProximo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonProximo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonProximo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelSenhaChamada)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -178,7 +180,6 @@ public class AdministracaoView extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,14 +191,17 @@ public class AdministracaoView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
+    private void jTextFieldCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCadastroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCadastroActionPerformed
+
+    private void jButtonCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastroActionPerformed
         // TODO add your handling code here:
         String nome = jTextFieldCadastro.getText();
-        
         if (nome.equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(this, "Informe um nome para cadastrar uma senha");
-        }else{
             
+        }else{
             try {
                 AtendimentoController atController = new AtendimentoController();
                 
@@ -205,58 +209,46 @@ public class AdministracaoView extends javax.swing.JFrame {
                 atendimento.setNome(nome);
                 atendimento.setData(new Date());
                 atendimento.setStatus(0);
-                
                 int senha = atController.save(atendimento);
                 
                 //Atualiza o label com a senha que foi cadastrada no banco
                 jLabelSenhaCadastrada.setText("Cadastrado: " + senha + " - " + atendimento.getNome());
+                
+                //Limpa o campo nome para a digitação do próximo cliente
                 jTextFieldCadastro.setText("");
-                jTextFieldCadastro.requestFocus();
                 
                 
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Erro ao inserir a senha " + ex.getMessage());
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar pessoa: " + ex.getMessage());
             }
             
             
-            
         }
-        
-        
-    }//GEN-LAST:event_jButtonCadastrarActionPerformed
+    }//GEN-LAST:event_jButtonCadastroActionPerformed
 
     private void jButtonProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProximoActionPerformed
-        // TODO add your handling code here:
-        AtendimentoController atController = new AtendimentoController();
         
         try {
-            //Atualiza a senha que estava em atendimento (1) para senha já chamada (2)
+            
+            AtendimentoController atController = new AtendimentoController();
+            
+            //Atualiza a(s) senha(s) que estavam em atendimento para senhas já chamadas
             atController.updateJaAtendido();
             
             //Busca a próxima pessoa a ser atendida
-            AtendimentoModel atendimentoProximo = atController.getFirst();
+            AtendimentoModel atendimento = atController.getFirst();
             
-            if (atendimentoProximo != null){
-                atendimentoProximo.setStatus(1);
+            if (atendimento != null){
                 //Atualiza a pessoa como em atendimento
-                
-                atController.update(atendimentoProximo);
-                jLabelSenhaChamada.setText("Última senha chamada: " + atendimentoProximo.getId() + " - " + atendimentoProximo.getNome());               
-                
+                atendimento.setStatus(1);
+                atController.update(atendimento);
+                jLabelSenhaChamada.setText("Última senha chamada: " + atendimento.getId() + " - " + atendimento.getNome());
             }else{
-                jLabelSenhaChamada.setText("Fila vazia! Parabéns tome um café");
+                jLabelSenhaChamada.setText("Sem clientes na fila. Vá tomar um café :D");
             }
-            
-            
-            
-            
         } catch (SQLException ex) {
-            Logger.getLogger(AdministracaoView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Erro ao chamar próxima pessoa " + ex.getMessage());
         }
-        
-        
-        
-        
     }//GEN-LAST:event_jButtonProximoActionPerformed
 
     /**
@@ -295,11 +287,11 @@ public class AdministracaoView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonCadastrar;
+    private javax.swing.JButton jButtonCadastro;
     private javax.swing.JButton jButtonProximo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelSenhaCadastrada;
     private javax.swing.JLabel jLabelSenhaChamada;
     private javax.swing.JPanel jPanel1;

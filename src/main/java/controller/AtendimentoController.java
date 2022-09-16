@@ -13,8 +13,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.AtendimentoModel;
 import util.ConnectionFactory;
 
@@ -51,32 +49,47 @@ public class AtendimentoController {
             }
             
         } catch (SQLException ex) {            
-            throw new SQLException("Erro ao inserir a senha no banco de dados: " + ex.getMessage(),ex);
+            throw new SQLException("Erro ao inserir a senha: " + ex.getMessage(),ex);
         }finally{
-            ConnectionFactory.closeConnection(conn, statement);
+            ConnectionFactory.closeConnection(conn, statement, rs);
         }
-        
         return 0;
-        
     }
     
-    public void updateJaAtendido() throws SQLException {
-        String sql = "UPDATE ATENDIMENTO SET STATUS = 2 "
-                + "WHERE STATUS = 1";
-
+    public List<AtendimentoModel> getAll() throws SQLException{
+        
+        String sql = "SELECT * FROM ATENDIMENTO";
+        
         Connection conn = null;
         PreparedStatement statement = null;
-
+        ResultSet resultSet = null;
+        
+        List<AtendimentoModel> atendimentoList = new ArrayList();
+        
         try {
             conn = ConnectionFactory.getConnection();
             statement = conn.prepareStatement(sql);
-            statement.execute();
-
-        } catch (SQLException e) {
-            throw new SQLException("Erro ao tentar atualizar para clientes já atendidos" + e.getMessage(), e);
-        } finally {
-            ConnectionFactory.closeConnection(conn, statement);
+            resultSet = statement.executeQuery();
+            
+            while(resultSet.next()){
+                AtendimentoModel atendimentoModel = new AtendimentoModel();
+        
+                atendimentoModel.setId(resultSet.getInt("ID"));
+                atendimentoModel.setNome(resultSet.getString("NOME"));
+                atendimentoModel.setData(resultSet.getTimestamp("DATA"));
+                atendimentoModel.setAtendimento(resultSet.getTimestamp("ATENDIMENTO"));
+                atendimentoModel.setStatus(resultSet.getInt("STATUS"));
+                
+                atendimentoList.add(atendimentoModel);
+            }
+            
+        } catch (SQLException ex) {
+            throw new SQLException("Erro ao inserir a senha: " + ex.getMessage(),ex);
+        }finally{
+            ConnectionFactory.closeConnection(conn, statement, resultSet);
         }
+        
+        return atendimentoList;
     }
     
     public AtendimentoModel getFirst() throws SQLException {
@@ -115,6 +128,138 @@ public class AtendimentoController {
         }
     }
     
+    public List<AtendimentoModel> getNextList() throws SQLException {
+
+        String sql = "SELECT * FROM ATENDIMENTO WHERE STATUS = 0 order by id asc limit 3";
+
+        Connection conn = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        List<AtendimentoModel> atendimentoList = new ArrayList<>();
+
+        try {
+
+            conn = ConnectionFactory.getConnection();
+            statement = conn.prepareStatement(sql);
+
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+
+                AtendimentoModel atendimentoModel = new AtendimentoModel();
+
+                atendimentoModel.setId(resultSet.getInt("ID"));
+                atendimentoModel.setNome(resultSet.getString("NOME"));
+                atendimentoModel.setData(resultSet.getDate("DATA"));
+                atendimentoModel.setStatus(resultSet.getInt("STATUS"));
+
+                atendimentoList.add(atendimentoModel);
+
+            }
+            return atendimentoList;
+            
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao tentar obter as próximas pessoas a serem atendidas no banco de dados " + e.getMessage(), e);
+
+        } finally {
+            ConnectionFactory.closeConnection(conn, statement, resultSet);
+        }
+    }
+    
+    public List<AtendimentoModel> getChamadosList() throws SQLException {
+
+        String sql = "SELECT * FROM ATENDIMENTO WHERE STATUS = 2 order by id desc limit 3";
+
+        Connection conn = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        List<AtendimentoModel> atendimentoList = new ArrayList<>();
+
+        try {
+
+            conn = ConnectionFactory.getConnection();
+            statement = conn.prepareStatement(sql);
+
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+
+                AtendimentoModel atendimentoModel = new AtendimentoModel();
+
+                atendimentoModel.setId(resultSet.getInt("ID"));
+                atendimentoModel.setNome(resultSet.getString("NOME"));
+                atendimentoModel.setData(resultSet.getDate("DATA"));
+                atendimentoModel.setStatus(resultSet.getInt("STATUS"));
+
+                atendimentoList.add(atendimentoModel);
+
+            }
+            return atendimentoList;
+            
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao tentar obter as pessoas já chamadas no banco de dados " + e.getMessage(), e);
+
+        } finally {
+            ConnectionFactory.closeConnection(conn, statement, resultSet);
+        }
+    }
+    
+    public AtendimentoModel getChamado() throws SQLException {
+
+        String sql = "SELECT * FROM ATENDIMENTO WHERE STATUS = 1 order by id asc limit 1";
+
+        Connection conn = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+
+            conn = ConnectionFactory.getConnection();
+            statement = conn.prepareStatement(sql);
+
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+
+                AtendimentoModel atendimentoModel = new AtendimentoModel();
+
+                atendimentoModel.setId(resultSet.getInt("ID"));
+                atendimentoModel.setNome(resultSet.getString("NOME"));
+                atendimentoModel.setData(resultSet.getDate("DATA"));
+                atendimentoModel.setStatus(resultSet.getInt("STATUS"));
+                return atendimentoModel;
+            }
+            return null;
+            
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao tentar recuperar registro do banco de dados " + e.getMessage(), e);
+
+        } finally {
+            ConnectionFactory.closeConnection(conn, statement, resultSet);
+        }
+    }
+    
+    public void updateJaAtendido() throws SQLException {
+        String sql = "UPDATE ATENDIMENTO SET STATUS = 2 "
+                + "WHERE STATUS = 1";
+
+        Connection conn = null;
+        PreparedStatement statement = null;
+
+        try {
+            conn = ConnectionFactory.getConnection();
+            statement = conn.prepareStatement(sql);
+            statement.execute();
+
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao tentar atualizar para clientes já atendidos" + e.getMessage(), e);
+        } finally {
+            ConnectionFactory.closeConnection(conn, statement);
+        }
+    }
+    
     public void update(AtendimentoModel atendimentoModel) throws SQLException {
         String sql = "UPDATE ATENDIMENTO SET STATUS = ?, ATENDIMENTO = ?"
                 + "WHERE ID = ?";
@@ -139,42 +284,5 @@ public class AtendimentoController {
         } finally {
             ConnectionFactory.closeConnection(conn, statement);
         }
-    }
-    
-    
-    public List<AtendimentoModel> getAll() throws SQLException{
-        
-        String sql = "SELECT * FROM ATENDIMENTO";
-        
-        Connection conn = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-        
-        List<AtendimentoModel> atendimentoList = new ArrayList();
-        
-        
-        try {
-            conn = ConnectionFactory.getConnection();
-            statement = conn.prepareStatement(sql);
-            resultSet = statement.executeQuery();
-            
-            while(resultSet.next()){
-                AtendimentoModel atendimentoModel = new AtendimentoModel();
-        
-                atendimentoModel.setId(resultSet.getInt("ID"));
-                atendimentoModel.setNome(resultSet.getString("NOME"));
-                atendimentoModel.setData(resultSet.getTimestamp("DATA"));
-                atendimentoModel.setAtendimento(resultSet.getTimestamp("ATENDIMENTO"));
-                atendimentoModel.setStatus(resultSet.getInt("STATUS"));
-                
-                atendimentoList.add(atendimentoModel);
-            }
-        } catch (SQLException ex) {
-            throw new SQLException("Erro ao obter as senhas do banco de dados: " + ex.getMessage(),ex);
-        }finally{
-            ConnectionFactory.closeConnection(conn, statement, resultSet);
-        }
-        
-        return atendimentoList;
     }
 }
